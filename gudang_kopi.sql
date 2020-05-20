@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 03:55 PM
+-- Generation Time: May 19, 2020 at 10:01 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -25,27 +25,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gudang`
---
-
-CREATE TABLE `gudang` (
-  `id_gudang` varchar(10) NOT NULL,
-  `nama_gudang` varchar(25) DEFAULT NULL,
-  `kapasitas` int(9) DEFAULT NULL,
-  `jumlah_item` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `item`
 --
 
 CREATE TABLE `item` (
-  `id_item` varchar(10) NOT NULL,
-  `jumlah_item` int(9) DEFAULT NULL,
-  `nama_item` varchar(25) DEFAULT NULL,
-  `id_gudang` varchar(10) DEFAULT NULL
+  `id_item` varchar(20) NOT NULL,
+  `jumlah` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,10 +40,12 @@ CREATE TABLE `item` (
 --
 
 CREATE TABLE `transaksi` (
-  `id_transaksi` int(12) NOT NULL,
+  `id_item` varchar(20) DEFAULT NULL,
+  `nama_item` varchar(20) DEFAULT NULL,
+  `jumlah` int(5) DEFAULT NULL,
+  `nama_gudang` varchar(20) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
-  `id_item` varchar(10) DEFAULT NULL,
-  `jumlah_item` int(9) DEFAULT NULL
+  `ket` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -66,40 +53,10 @@ CREATE TABLE `transaksi` (
 --
 
 --
--- Indexes for table `gudang`
---
-ALTER TABLE `gudang`
-  ADD PRIMARY KEY (`id_gudang`);
-
---
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`id_item`),
-  ADD KEY `id_gudang` (`id_gudang`);
-
---
--- Indexes for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_item` (`id_item`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_gudang`) REFERENCES `gudang` (`id_gudang`);
-
---
--- Constraints for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`);
+  ADD PRIMARY KEY (`id_item`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
