@@ -18,8 +18,9 @@ public class riwayatStok extends javax.swing.JFrame {
 
     /**
      * Creates new form riwayatStok
+     * @throws java.sql.SQLException
      */
-    public riwayatStok() throws SQLException {
+    public riwayatStok() throws SQLException{
         initComponents();
         model = new DefaultTableModel();
         tabelRiwayat.setModel(model);
@@ -65,6 +66,11 @@ public class riwayatStok extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelRiwayat);
 
         jButton1.setText("Kembali");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +101,12 @@ public class riwayatStok extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Beranda go = new Beranda();
+        go.setVisible(true);
+        this.dispose(); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

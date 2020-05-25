@@ -5,6 +5,7 @@
  */
 package gudang.kopi;
 
+import static java.awt.image.ImageObserver.WIDTH;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
 public class tambahStok extends javax.swing.JFrame {
 
     /**
-     * Creates new form tambahStok
+     * Creates new form kurangiStok
      */
     public tambahStok() {
         initComponents();
@@ -32,41 +33,76 @@ public class tambahStok extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tf_id_item = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        tf_id_item = new javax.swing.JTextField();
         tf_nama_item = new javax.swing.JTextField();
         tf_jumlah = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        tf_tanggal = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tf_bulan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("STOK MASUK");
+        jLabel1.setText("TAMBAH STOK");
 
         jLabel2.setText("ID Item");
 
-        tf_id_item.setText("jTextField1");
+        jLabel3.setText("Nama Item");
+
+        jLabel4.setText("Jumlah Masuk");
+
+        tf_id_item.setMinimumSize(new java.awt.Dimension(65, 20));
         tf_id_item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_id_itemActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Nama Item");
+        tf_nama_item.setText(" ");
+        tf_nama_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nama_itemActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Jumlah Masuk");
-
-        tf_nama_item.setText("jTextField2");
-
-        tf_jumlah.setText("jTextField3");
+        tf_jumlah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_jumlahActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Kembali");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Ubah");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Tanggal");
+
+        tf_tanggal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_tanggalActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Bulan");
+
+        tf_bulan.setText(" ");
+        tf_bulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_bulanActionPerformed(evt);
             }
         });
 
@@ -77,28 +113,29 @@ public class tambahStok extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_id_item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(180, 180, 180))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tf_nama_item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(184, 184, 184))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                        .addComponent(tf_jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(184, 184, 184))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addContainerGap())))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_jumlah)
+                            .addComponent(tf_nama_item)
+                            .addComponent(tf_id_item, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_tanggal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +154,13 @@ public class tambahStok extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tf_jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tf_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tf_bulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -127,23 +170,30 @@ public class tambahStok extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_id_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_id_itemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_id_itemActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Beranda go = new Beranda();
+        go.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Database db;
         String id_item = tf_id_item.getText();
         String nama_item = tf_nama_item.getText();
         String jumlah = tf_jumlah.getText();
+        String tanggal = (tf_tanggal.getText() +"/"+ tf_bulan.getText());
+        String keterangan = "masuk";
         
         try {
             db = new Database();
-            db.transaksi(id_item, nama_item, WIDTH, nama_item, null, jumlah);
+            String query = "INSERT INTO transaksi VALUES ('" +id_item+"', '"+nama_item+"', '"+jumlah+"', '"+tanggal+"', '"+keterangan+"');";
             JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
             tf_id_item.setText("");
             tf_nama_item.setText("");
             tf_jumlah.setText("");
+            tf_tanggal.setText("");
+            tf_bulan.setText("");
+            
             Beranda go = new Beranda();
             go.setVisible(true);
             this.dispose();
@@ -151,6 +201,26 @@ public class tambahStok extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data Gagal Ditambahkan");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tf_id_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_id_itemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_id_itemActionPerformed
+
+    private void tf_tanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_tanggalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_tanggalActionPerformed
+
+    private void tf_nama_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nama_itemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nama_itemActionPerformed
+
+    private void tf_jumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_jumlahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_jumlahActionPerformed
+
+    private void tf_bulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_bulanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_bulanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,20 +239,20 @@ public class tambahStok extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tambahStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kurangiStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tambahStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kurangiStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tambahStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kurangiStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tambahStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kurangiStok.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tambahStok().setVisible(true);
+                new kurangiStok().setVisible(true);
             }
         });
     }
@@ -194,8 +264,12 @@ public class tambahStok extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField tf_bulan;
     private javax.swing.JTextField tf_id_item;
     private javax.swing.JTextField tf_jumlah;
     private javax.swing.JTextField tf_nama_item;
+    private javax.swing.JTextField tf_tanggal;
     // End of variables declaration//GEN-END:variables
 }

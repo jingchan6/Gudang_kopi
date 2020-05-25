@@ -40,6 +40,10 @@ public class kurangiStok extends javax.swing.JFrame {
         tf_jumlah = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        tf_tanggal = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tf_bulan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,16 +55,20 @@ public class kurangiStok extends javax.swing.JFrame {
 
         jLabel4.setText("Jumlah Keluar");
 
-        tf_id_item.setText("jTextField1");
         tf_id_item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_id_itemActionPerformed(evt);
             }
         });
 
-        tf_nama_item.setText("jTextField2");
+        tf_nama_item.setText(" ");
+        tf_nama_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nama_itemActionPerformed(evt);
+            }
+        });
 
-        tf_jumlah.setText("jTextField3");
+        tf_jumlah.setText(" ");
 
         jButton1.setText("Kembali");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +84,19 @@ public class kurangiStok extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Tanggal");
+
+        tf_tanggal.setText(" ");
+        tf_tanggal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_tanggalActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Bulan");
+
+        tf_bulan.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,21 +105,27 @@ public class kurangiStok extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_nama_item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_id_item, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(0, 142, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_jumlah)
+                            .addComponent(tf_nama_item)
+                            .addComponent(tf_id_item)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tf_tanggal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,7 +145,13 @@ public class kurangiStok extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tf_jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tf_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tf_bulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -139,14 +172,19 @@ public class kurangiStok extends javax.swing.JFrame {
         String id_item = tf_id_item.getText();
         String nama_item = tf_nama_item.getText();
         String jumlah = tf_jumlah.getText();
+        String tanggal = (tf_tanggal.getText() +"/"+ tf_bulan.getText());
+        String keterangan = "keluar";
         
         try {
             db = new Database();
-            db.transaksi(id_item, nama_item, WIDTH, nama_item, null, jumlah);
+            String query = "INSERT INTO transaksi VALUES ('" +id_item+"', '"+nama_item+"', '"+jumlah+"', '"+tanggal+"', '"+keterangan+"');";
             JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
             tf_id_item.setText("");
             tf_nama_item.setText("");
             tf_jumlah.setText("");
+            tf_tanggal.setText("");
+            tf_bulan.setText("");
+            
             Beranda go = new Beranda();
             go.setVisible(true);
             this.dispose();
@@ -158,6 +196,14 @@ public class kurangiStok extends javax.swing.JFrame {
     private void tf_id_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_id_itemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_id_itemActionPerformed
+
+    private void tf_tanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_tanggalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_tanggalActionPerformed
+
+    private void tf_nama_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nama_itemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nama_itemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,8 +247,12 @@ public class kurangiStok extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField tf_bulan;
     private javax.swing.JTextField tf_id_item;
     private javax.swing.JTextField tf_jumlah;
     private javax.swing.JTextField tf_nama_item;
+    private javax.swing.JTextField tf_tanggal;
     // End of variables declaration//GEN-END:variables
 }

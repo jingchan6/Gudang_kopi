@@ -31,16 +31,4 @@ public class Database {
         rs = stm.executeQuery(sql);
         return rs;
     }
-    
-    public void update(String jumlah) throws SQLException{
-        String keterangan = null;
-        String query;
-        query = "select keterangan from transaksi where (keteragan = '"+keterangan+"'";
-        if(keterangan == "keluar"){
-            
-        } else if (keterangan == "masuk"){
-            
-        } stm.execute(query);
-    }
-    
 }
